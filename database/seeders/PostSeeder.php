@@ -18,6 +18,10 @@ class PostSeeder extends Seeder
                 'imageable_id' => $post->id,
                 'imageable_type' => Post::class
             ]);
+            $post->tags()->attach([
+                rand(1, 5),
+                rand(6, 10)
+            ]);
         }
     }
 }
