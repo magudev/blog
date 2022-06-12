@@ -10,6 +10,13 @@ class Tag extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'slug', 'color'];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    
     // ----------------------------------- RELACIONES -----------------------------------
 
     // Relación N a N → muchos tags pueden estar asociados con muchos posts

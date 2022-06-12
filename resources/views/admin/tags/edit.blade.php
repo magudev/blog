@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Editar categoría</h1>
+    <h1>Editar etiqueta</h1>
 @stop
 
 @section('content')
@@ -18,12 +18,12 @@
         <div class="card-body">
 
             {{-- FORMULARIO --}}
-            {!! Form::model($category, ['route' => ['admin.categories.update', $category], 'method' => 'PUT']) !!}
+            {!! Form::model($tag, ['route' => ['admin.tags.update', $tag], 'method' => 'PUT']) !!}
             
                 {{-- Nombre --}}
                 <div class="form-group">
                     {!! Form::label('name', 'Nombre') !!}
-                    {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el nombre de la categoría']) !!}
+                    {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el nombre de la etiqueta']) !!}
                 
                     @error('name')
                         <span class="text-danger">{{ $message }}</span>
@@ -36,6 +36,17 @@
                     {!! Form::text('slug', null, ['class' => 'form-control', 'readOnly']) !!}
 
                     @error('slug')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                {{-- Color --}}
+                <div class="form-group">
+                    {!! Form::label('color', 'Color') !!}
+                    {!! Form::select('color', [null => 'Seleccione color'] + $colores, 
+                    null, ['class' => 'form-control']) !!}
+
+                    @error('color')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
