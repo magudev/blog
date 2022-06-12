@@ -10,6 +10,12 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'slug'];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
     // ----------------------------------- RELACIONES -----------------------------------
 
     // Relación 1 a N → una categoría puede tener muchos posts asociados
