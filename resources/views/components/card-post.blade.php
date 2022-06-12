@@ -1,7 +1,7 @@
 @props(['post'])
 
 <article class="mb-5 bg-white shadow-lg rounded-lg overflow-hidden">
-    <img class="w-full h-72 object-cover object-center" src="{{ asset('storage/'.$post->image->url) }}" alt="Imagen">
+    <img class="w-full h-72 object-cover object-center" src="@if($post->image) {{ asset('storage/'.$post->image->url) }} @else https://cdn.pixabay.com/photo/2022/06/02/11/12/felucca-7237715_960_720.jpg @endif" alt="Imagen">
     <div class="py-4 px-6">
         <h1 class="font-bold text-xl mb-2">
             <a href="{{ route('posts.show', $post)}}">{{ $post->name }}</a>

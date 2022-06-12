@@ -13,6 +13,8 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id', 'created_at', 'updated_at'];
+
     // ----------------------------------- RELACIONES -----------------------------------
 
     // Relación 1 a N (inversa) → múltiples posts pueden pertenecer al mismo usuario
