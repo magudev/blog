@@ -9,14 +9,19 @@ use App\Models\Category;
 use Illuminate\Database\Seeder;
 use Database\Seeders\PostSeeder;
 use Database\Seeders\UserSeeder;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
 {
     public function run()
     {
+        Cache::flush();
+        
         Storage::makeDirectory('posts');
+        
+        $this->call(RoleSeeder::class);
 
         $this->call(UserSeeder::class);
 
@@ -24,5 +29,6 @@ class DatabaseSeeder extends Seeder
         Tag::factory(10)->create();
 
         $this->call(PostSeeder::class);
+
     }
 }

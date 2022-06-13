@@ -8,10 +8,18 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
 use App\Models\Category;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin.posts.index')->only('index');    
+        $this->middleware('can:admin.posts.create')->only('create', 'store');    
+        $this->middleware('can:admin.posts.edit')->only('edit', 'update');
+        $this->middleware('can:admin.posts.destroy')->only('destroy');   
+    }
 
     // INDEX
     public function index()
@@ -44,13 +52,9 @@ class PostController extends Controller
             $post->tags()->attach($request->tags);
         }
 
-        return redirect()->route('admin.posts.edit', compact('post'))->with('info', '¡El post se creó correctamente!');
-    }
+        Cache::flush();
 
-    // SHOW
-    public function show(Post $post)
-    {
-        return view('admin.posts.show', compact($post));
+        return redirect()->route('admin.posts.edit', compact('post'))->with('info', '¡El post se creó correctamente!');
     }
 
     // EDIT
@@ -88,6 +92,8 @@ class PostController extends Controller
         if ($request->tags) {
             $post->tags()->sync($request->tags);
         }
+
+        Cache::flush();
         
         return redirect()->route('admin.posts.edit', $post)->with('info', '¡El post se actualizó correctamente!');
     }
@@ -96,8 +102,8 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $this->authorize('author', $post);
-        
         $post->delete();
+        Cache::flush();
         return redirect()->route('admin.posts.index')->with('info', '¡El post se eliminó correctamente!');
     }
 }

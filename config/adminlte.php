@@ -228,7 +228,7 @@ return [
         // Navbar items:
         [
             'type'         => 'navbar-search',
-            'text'         => 'search',
+            'text'         => 'Buscar...',
             'topnav_right' => true,
         ],
         [
@@ -239,41 +239,57 @@ return [
         // Sidebar items:
         [
             'type' => 'sidebar-menu-search',
-            'text' => 'search',
+            'text' => 'Buscar...',
         ],
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
+        ['header' => 'ADMINISTRADOR'],
         [
             'text'        => 'Dashboard',
             'route'         => 'admin.home',
             'icon'        => 'fas fa-tachometer-alt fa-fw',
+            'can'       => 'admin.home'
         ],
-        ['header' => 'ADMINISTRADOR'],
         [
-            'text' => 'Categorías',
-            'route'  => 'admin.categories.index',
-            'icon' => 'fab fa-fw fa-buffer',
-            'active' => ['admin/categories/*']
+            'text'        => 'Usuarios',
+            'route'         => 'admin.users.index',
+            'icon'        => 'fas fa-users fa-fw',
+            'can'           => 'admin.users.index'
+        ],
+        [
+            'text'      => 'Roles',
+            'route'     => 'admin.roles.index',
+            'icon'      => 'fas fa-users-cog fa-fw'
+        ],
+        [
+            'text'      => 'Categorías',
+            'route'     => 'admin.categories.index',
+            'icon'      => 'fab fa-fw fa-buffer',
+            'active'    => ['admin/categories/*'],
+            'can'       => 'admin.categories.index'
         ],
         [
             'text' => 'Etiquetas',
             'route'  => 'admin.tags.index',
             'icon' => 'far fa-fw fa-bookmark',
-            'active' => ['admin/tags/*']
+            'active' => ['admin/tags/*'],
+            'can'           => 'admin.tags.index'
         ],
         ['header' => 'OPCIONES DE BLOG'],
         [
             'text'       => 'Lista de posts',
             'route'        => 'admin.posts.index',
-            'icon'         => 'fa fa-fw fa-clipboard'
+            'icon'         => 'fa fa-fw fa-clipboard',
+            'can'           => 'admin.posts.index'
         ],
         [
             'text'       => 'Crear nuevo post',
             'route'        => 'admin.posts.create',
-            'icon'         => 'fa fa-fw fa-file'
+            'icon'         => 'fa fa-fw fa-file',
+            'can'           => 'admin.posts.create'
         ],
     ],
 
