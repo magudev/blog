@@ -262,7 +262,8 @@ return [
         [
             'text'      => 'Roles',
             'route'     => 'admin.roles.index',
-            'icon'      => 'fas fa-users-cog fa-fw'
+            'icon'      => 'fas fa-users-cog fa-fw',
+            'can'       => 'admin.roles.index'
         ],
         [
             'text'      => 'Categorías',

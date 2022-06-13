@@ -14,7 +14,7 @@
         </div>
     @endif
 
-   @livewire('admin.posts-index') 
+   @livewire('admin.posts-index')  
 @stop
 
 @section('css')

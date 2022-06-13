@@ -26,7 +26,7 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email}}</td>
                                 <td width="10px">
-                                    <a href="{{ route('admin.users.edit', $user)}}" class="btn btn-secondary">Editar</a>
+                                    <a href="{{ route('admin.users.edit', $user)}}" class="btn btn-primary">Editar</a>
                                 </td>
                             </tr>
                         @endforeach

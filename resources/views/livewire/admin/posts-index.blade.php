@@ -7,12 +7,13 @@
 
     @if ($posts->count())
         <div class="card-body">
-            <table class="table table-striped">
+            <table class="table table-striped"> 
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th colspan="2">Action</th>
+                        <th class="text-center">Status</th>
+                        <th colspan="2" class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -20,6 +21,11 @@
                         <tr>
                             <td>{{ $post->id }}</td>
                             <td>{{ $post->name }}</td>
+                            @if ($post->status == 1) 
+                                <td class="text-secondary text-center">Borrador</td>
+                            @else 
+                                <td class="text-success text-center">Publicado</td>
+                            @endif
                             <td width="10px">
                                 <a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-primary btn-sm">Editar</a>
                             </td>
